@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'geoships_info_app',
-    'rest_framework'
+    'rest_framework',
+    'geoships_info_app.api'
+
 ]
 
 MIDDLEWARE_CLASSES = [
