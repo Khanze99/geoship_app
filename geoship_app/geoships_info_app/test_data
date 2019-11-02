@@ -1,0 +1,12 @@
+from .models import Vessel
+from .models import History
+from django.contrib.auth.models import User
+
+owner = User.objects.get(username='owner')
+vessel1 = Vessel.objects.create(code=212660000, name='FEDOR LITKE')
+vessel2 = Vessel.objects.create(code=273392760, name='AKADEMIK PRIMAKOV', owner=owner)
+
+history1 = History.objects.create(vessel=vessel1, geo_date='08/01/2019 11:51:01', lat=69.07024, lon=72.78649)
+history1_1 = History.objects.create(vessel=vessel1, geo_date='2019-08-01 11:52:07', lat=70.28964, lon=73.82657)
+history2 = History.objects.create(vessel=vessel2, geo_date='2019-08-01 11:51:03+03:00', lat=63.19177, lon=74.53318)
+history2_1 = History.objects.create(vessel=vessel2, geo_date='2019-08-01 11:52:12', lat=63.18922, lon=74.53211)
