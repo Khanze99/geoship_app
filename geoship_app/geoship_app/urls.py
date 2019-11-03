@@ -19,5 +19,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('geoships_info_app.api.urls'))
+    path('api/', include('geoships_info_app.urls'))
 ]

@@ -25,7 +25,7 @@ SECRET_KEY = 'ngpnmtsfnavy)*sh5_cs8xs+=dv7%%+&e#t#_x(bx_5ft*8lw8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'geoships_info_app',
     'rest_framework',
-    'geoships_info_app.api'
 
 ]
 
