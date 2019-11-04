@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
-from .models import Vessel
-from .serializers import VesselSerializer, VesselDetailSerializator
+from .models import Vessel, History
+from .serializers import VesselListSerializer, VesselDetailSerializator, HistorySerializer
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -20,7 +20,7 @@ class VesselDetailAPIView(RetrieveAPIView):
 
 
 class ListVesselsAPI(ListAPIView):
-    serializer_class = VesselSerializer
+    serializer_class = VesselListSerializer
 
     def get_queryset(self):
         queryset = Vessel.objects.all()
@@ -32,3 +32,12 @@ class ListVesselsAPI(ListAPIView):
     #     if user.is_staff:
     #         queryset_list = Vessel.objects.all()
     #     return queryset_list
+
+
+class HistoryAPI(ListAPIView):
+    serializer_class = HistorySerializer
+
+    def get_queryset(self):
+        vessel = Vessel.objects.get(id=self.kwargs['pk'])
+        queryset = History.objects.filter(vessel=vessel)
+        return queryset
