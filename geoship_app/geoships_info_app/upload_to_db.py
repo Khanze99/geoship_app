@@ -1,11 +1,26 @@
 import pandas as pd
 from openpyxl import load_workbook
-from itertools import islice
+import os
+from django.conf import settings
 
-wb = load_workbook('20190801.xlsx')
-sheet = wb.get_sheet_by_name('ais-kara-20190723132714597')
-data = sheet.values
+path = settings.PATH_FILES
 
 
-df = pd.DataFrame(data)
-print(df.values[1:])
+def parse_file_data(file):
+    path_file = path+file
+    print(path_file)
+    wb = load_workbook(path_file)
+    sheet = wb.worksheets[0]
+    data = sheet.values
+    df = pd.DataFrame(data).values[1:]
+
+
+def parse_files(list_files):
+    for file in list_files:
+        parse_file_data(file)
+
+
+def check_files():
+    list_files = os.listdir(path)
+    if len(list_files) >= 1:
+        parse_files(list_files)

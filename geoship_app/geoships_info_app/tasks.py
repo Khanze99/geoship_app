@@ -1,5 +1,10 @@
+from __future__ import absolute_import, unicode_literals
+from celery.task import periodic_task
 from celery import shared_task
+from celery.schedules import crontab
+from .upload_to_db import check_files
 
-@shared_task
-def push_date_to_parse(**data):
-    print('Test')
+
+@periodic_task(run_every=crontab(minute='*/1'), name="push_date_to_parse")
+def push_date_to_parse():
+    check_files()
