@@ -12,7 +12,7 @@ class VesselListSerializer(serializers.ModelSerializer):
             'detail_url',
             'history',
             'id',
-            'name'
+            'code'
         )
 
 
