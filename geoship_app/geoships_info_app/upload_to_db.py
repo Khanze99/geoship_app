@@ -7,6 +7,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Vessel, History
 
 path = settings.PATH_FILES
+path_to = settings.PATH_UPLOADED_FILES
+
+
+def move_file(file):
+    os.system('mv {} {}'.format(path+file, path_to))
+    print('OK mv')
 
 
 def parse_file_data(file):
@@ -26,7 +32,8 @@ def parse_file_data(file):
         except ObjectDoesNotExist:
             vessel = Vessel.objects.create(name=name, code=code)
         obj = History.objects.create(vessel=vessel, lat=lat, lon=lon, geo_date=date)
-        print(obj.vessel.name)
+        print(obj.vessel.code)
+    move_file(file)
 
 
 def parse_files(list_files):
@@ -39,4 +46,5 @@ def check_files():
     if len(list_files) >= 1:
         parse_files(list_files)
     else:
-        return "No files"
+        print('No files')
+        return True
