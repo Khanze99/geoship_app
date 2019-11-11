@@ -15,8 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PATH_FILES = '/home/khanze/for_upload_db/'
-PATH_UPLOADED_FILES = '/home/khanze/uploaded_files/'
+PATH_FILES = '/home/user/for_upload_db/'
+PATH_UPLOADED_FILES = '/home/user/uploaded_files/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'geoships_info_app',
     'rest_framework',
+    'rest_framework.authtoken'
 
 ]
 
@@ -55,6 +56,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'geoship_app.urls'
+
+REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )}
 
 TEMPLATES = [
     {
