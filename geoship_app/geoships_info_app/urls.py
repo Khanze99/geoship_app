@@ -6,7 +6,8 @@ from . import views
 router = DefaultRouter()
 router.register(r'vessels', views.VesselAPIViewSet, basename='vessel')
 
-urlpatterns = []
+urlpatterns = [path('history/<int:id>/', views.HistoryAPI.as_view(), name='history'),
+]
 
 urlpatterns += router.urls
 

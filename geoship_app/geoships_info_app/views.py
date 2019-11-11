@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from .models import Vessel, History
-from .serializers import VesselListSerializer, VesselDetailSerializer, HistorySerializer, VesselSerializer
+from .serializers import HistorySerializer, VesselSerializer
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -27,17 +27,13 @@ class VesselAPIViewSet(ViewSet):
         serializer.is_valid()
         return Response(serializer.data)
 
-    def history_list(self, request):
-        pass
 
+class HistoryAPI(ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = HistorySerializer
 
-
-
-# class HistoryAPI(ListAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = HistorySerializer
-#
-#     def get_queryset(self):
-#         vessel = Vessel.objects.get(id=self.kwargs['pk'])
-#         queryset = History.objects.filter(vessel=vessel)
-#         return queryset
+    def get_queryset(self):
+        vessel = Vessel.objects.get(id=self.kwargs['id'])
+        queryset = History.objects.filter(vessel=vessel)
+        return queryset
