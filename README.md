@@ -6,8 +6,8 @@ MODELS:
     <li> History
 
 API:
-    <li> list vessels --- api/vessels/
-    <li> History by ship id api/history/id
+    <li> list vessels ---> api/vessels/
+    <li> History by ship ---> id api/history/id
 
 API реализован как для владельцев так и для админа.
 
