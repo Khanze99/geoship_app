@@ -34,6 +34,16 @@ class HistoryAPI(ListAPIView):
     serializer_class = HistorySerializer
 
     def get_queryset(self):
+        user_id = self.request.user.id
+        user = User.objects.get(id=user_id)
         vessel = Vessel.objects.get(id=self.kwargs['id'])
-        queryset = History.objects.filter(vessel=vessel)
-        return queryset
+        if user.is_staff:
+            queryset = History.objects.filter(vessel=vessel)
+            return queryset
+        try:
+            if vessel.owner.id == user_id:
+                queryset = History.objects.filter(vessel=vessel)
+                return queryset
+        except AttributeError:
+            return []
+        return []
