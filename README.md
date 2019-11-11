@@ -2,12 +2,12 @@ GEOSHIPS APP
 ***
 
 MODELS:
-    * Vessel
-    * History
+    <li> Vessel
+    <li> History
 
 API:
-    * list vessels --- api/vessels/
-    * History by ship id api/history/id
+    <li> list vessels --- api/vessels/
+    <li> History by ship id api/history/id
 
 API реализован как для владельцев так и для админа.
 
